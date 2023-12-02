@@ -1,0 +1,36 @@
+odule Program
+    ' Finding and truncating a character
+    Sub Main()
+        Dim orgstr, newstr As String
+        Dim replacechr, chr, replacewith As Char
+        Dim i As Integer
+        newstr = ""
+
+        Console.WriteLine("Enter a String")
+        orgstr = UCase(Console.ReadLine)
+
+        Console.WriteLine("Enter character to replace")
+        replacechr = UCase(Console.ReadLine)
+
+        While InStr(orgstr, replacechr) = 0
+            Console.WriteLine("This character is not present in string. Enter another character")
+            replacechr = UCase(Console.ReadLine)
+        End While
+
+        Console.WriteLine("Enter character to replace with")
+        replacewith = UCase(Console.ReadLine)
+
+        For i = 1 To Len(orgstr)
+            chr = Mid(orgstr, i, 1)
+            If replacechr <> chr Then
+                newstr = newstr + chr
+            Else
+                newstr = newstr + replacewith
+            End If
+        Next
+
+        Console.WriteLine("Final String: " & newstr)
+
+
+    End Sub
+End Module
