@@ -1,5 +1,5 @@
 Module Program
-    ' Finding and truncating a character
+    ' Finding and replacing a character
     Sub Main()
         Dim orgstr, newstr As String
         Dim replacechr, chr, replacewith As Char
