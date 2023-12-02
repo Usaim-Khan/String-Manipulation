@@ -1,0 +1,41 @@
+Module Program
+    ' Checking For pangram
+
+    Sub Main()
+        Dim alphabets, str1 As String
+        Dim i, sum As Integer
+        Dim chr As Char
+
+        alphabets = "qwertyuioplkjhgfdsazxcvbnm"
+
+        Console.WriteLine("Enter a String")
+        str1 = Console.ReadLine
+        Dim myarr(0 To Len(alphabets) - 1) As Integer
+
+        For i = 1 To Len(str1)
+            chr = Mid(alphabets, i, 1)
+            If InStr(str1, chr) = 0 Then
+                If i <= Len(alphabets) Then
+                    myarr(i - 1) = 0
+                End If
+
+            Else
+                If i <= Len(alphabets) Then
+                    myarr(i - 1) = 1
+                End If
+            End If
+        Next
+
+        For i = 1 To Len(alphabets)
+            sum = sum + myarr(i - 1)
+
+        Next
+
+        If sum = 26 Then
+            Console.WriteLine("It is Pangram")
+
+        Else
+            Console.WriteLine("It is not Pangram")
+        End If
+    End Sub
+End Module
