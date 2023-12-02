@@ -1,4 +1,4 @@
-odule Program
+Module Program
     ' Finding and truncating a character
     Sub Main()
         Dim orgstr, newstr As String
