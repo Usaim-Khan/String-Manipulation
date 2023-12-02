@@ -1,0 +1,23 @@
+Module Program
+    'Reverse A String
+    Sub Main()
+        Dim str, newstr As String
+        Dim i As Integer
+        newstr = ""
+
+        Console.WriteLine("Enter a String")
+        str = Console.ReadLine
+        Dim strarray(0 To Len(str) - 1) As String
+
+        For i = 1 To Len(str)
+            strarray(i - 1) = Mid(str, i, 1)
+        Next
+
+        For i = Len(str) To 1 Step -1
+            newstr = newstr + strarray(i - 1)
+        Next
+
+        Console.WriteLine("Final String: " & newstr)
+
+    End Sub
+End Module
