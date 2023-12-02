@@ -1,0 +1,46 @@
+Module Program
+    ' Checking For Anagram
+    Function truncate(org_str, char_to_delete)
+        Dim new_str As String
+        Dim letter As Char
+        Dim i As Integer
+        new_str = ""
+
+        For i = 1 To Len(org_str)
+            letter = Mid(org_str, i, 1)
+            If letter <> char_to_delete Then
+                new_str = new_str + letter
+            End If
+        Next
+
+        Return new_str
+    End Function
+
+    Sub Main()
+        Dim str1, str2 As String
+        Dim chr As Char
+
+        Console.WriteLine("Enter 1st String")
+        str1 = UCase(Console.ReadLine)
+        Console.WriteLine("Enter 2nd String")
+        str2 = UCase(Console.ReadLine)
+
+        If Len(str1) <> Len(str2) Then
+            Console.WriteLine("The strings are not Anagram")
+        Else
+            For i = 1 To Len(str1)
+                chr = Mid(str1, i, 1)
+                If InStr(str2, chr) > 0 Then
+                    str2 = truncate(str2, chr)
+                End If
+            Next
+            If Len(str2) = 0 Then
+                Console.WriteLine("The Strings are Anagrams")
+            Else
+                Console.WriteLine("The Strings are not Anagrams")
+            End If
+        End If
+
+
+    End Sub
+End Module
