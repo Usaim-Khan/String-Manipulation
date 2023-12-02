@@ -1,0 +1,33 @@
+Module Program
+    ' Finding and truncating a character
+    Sub Main()
+        Dim str1, new_str As String
+        Dim chr, letter As Char
+        Dim i As Integer
+        new_str = ""
+
+        Console.WriteLine("Enter a String")
+        str1 = UCase(Console.ReadLine)
+
+        Console.WriteLine("Enter character to truncate")
+        chr = UCase(Console.ReadLine)
+
+        While InStr(str1, chr) = 0
+            Console.WriteLine("This character is not present in string. Enter another character")
+            chr = UCase(Console.ReadLine)
+        End While
+        Console.WriteLine(str1)
+        Console.WriteLine(chr)
+
+        For i = 1 To Len(str1)
+            letter = Mid(str1, i, 1)
+            If letter <> chr Then
+                new_str = new_str + letter
+            End If
+        Next
+
+        Console.WriteLine("Final String: " & new_str)
+
+
+    End Sub
+End Module
