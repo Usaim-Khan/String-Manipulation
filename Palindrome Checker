@@ -1,0 +1,32 @@
+Module Program
+    ' Checking For Palindrome
+
+    Sub Main()
+        Dim str1, str2 As String
+        Dim i As Integer
+        Dim flag As Boolean
+        i = 1
+        flag = True
+        str2 = ""
+
+        Console.WriteLine("Enter 1st String")
+        str1 = Console.ReadLine
+
+        For i = 1 To Len(str1)
+            str2 = Mid(str1, i, 1) + str2
+        Next
+
+        For i = 1 To Len(str1)
+            If Left(str1, i) <> Left(str2, i) Then
+                flag = False
+                Exit For
+            End If
+        Next
+
+        If flag Then
+            Console.WriteLine("Strings are Palindromes")
+        Else
+            Console.WriteLine("Strings are not Palindromes")
+        End If
+    End Sub
+End Module
