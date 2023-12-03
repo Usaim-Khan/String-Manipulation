@@ -1,0 +1,38 @@
+
+Module Program
+    ' Abbreviate Name
+
+    Sub Main()
+        Dim name, abv As String
+        Dim location, spacepos As Integer
+        Dim char1 As Char
+
+        location = 1
+
+        Console.WriteLine("Enter Your Name")
+        name = UCase(Console.ReadLine)
+
+        'removing spaces from start
+        While InStr(name, " ") = 1
+            name = Mid(name, 2, Len(name) - 1)
+
+        End While
+        abv = Left(name, 1)
+
+
+
+        For i = 1 To Len(name)
+            spacepos = InStr(name, " ")
+            If spacepos > 0 Then
+                abv = abv + Mid(name, spacepos + 1, 1)
+                name = Mid(name, spacepos + 1, Len(name) - spacepos)
+
+            Else
+                Exit For
+
+            End If
+        Next
+        Console.WriteLine("Abbreviation: " & abv)
+
+    End Sub
+End Module
