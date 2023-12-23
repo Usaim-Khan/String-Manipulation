@@ -1,0 +1,17 @@
+Module Program
+    Function MID_by_me(str, index, NoOfChar)
+        Dim result As String
+        result = Right(str, Len(str) - index + 1)
+        result = Left(result, NoOfChar)
+        Return result
+
+    End Function
+
+    Sub Main()
+        Console.WriteLine(Mid("happy birthday", 7, 5))
+        Console.WriteLine(MID_by_me("happy birthday", 7, 5))
+
+
+
+    End Sub
+End Module
