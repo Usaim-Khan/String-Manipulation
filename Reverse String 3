@@ -1,0 +1,19 @@
+Module Program
+
+    Sub Main()
+        Dim mystr, revstr As String
+        Dim i As Integer
+        revstr = ""
+        mystr = "racecar123"
+
+        For i = Len(mystr) To 1 Step -1
+            Console.WriteLine(Mid(mystr, i, 1))
+            revstr = revstr & Mid(mystr, i, 1)
+
+        Next
+        Console.WriteLine(revstr)
+
+
+
+    End Sub
+End Module
