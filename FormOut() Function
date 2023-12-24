@@ -1,0 +1,50 @@
+A function, FormOut(), takes an integer parameter in the range 0 to 999 999 and returns a 
+formatted string depending on two other parameter values.
+
+Formatting may incorporate the use of:
+• A prefix string to be added before the integer value (e.g. '$' or "Total: ")
+• A comma as a thousand-separator (e.g. "1,000")
+
+The function will be called as follows:
+MyString = FormOut(Number, Prefix, AddComma)
+
+Parameter   Data type   Description
+Number      INTEGER     The positive integer value to be formatted
+Prefix      STRING      A string that will appear in front of the numeric value. Set to an 
+                        empty string if no prefix is required.
+AddComma    BOOLEAN     TRUE if a comma is required in the formatted string.
+                        FALSE if a comma is not required in the formatted string
+
+==============================================================================================
+"ANSWER"
+
+
+Module Program
+    'FormOut()
+    Function FormOut(Number, Prefix, AddComma)
+        Dim result, str As String
+
+        str = CStr(Number)
+        If AddComma Then
+            If Number >= 1000 Then
+                result = "," + Right(str, 3)
+                str = Left(str, Len(str) - 3)
+                result = str + result
+            Else
+                result = str
+            End If
+        Else
+            result = str
+        End If
+        result = Prefix + result
+        Return result
+
+    End Function
+
+    Sub Main()
+        Console.WriteLine(FormOut(255, "PKR", False))
+        Console.WriteLine(FormOut(999999, "$", True))
+        Console.WriteLine(FormOut(1000, "", True))
+        Console.WriteLine(FormOut(57493, "", False))
+    End Sub
+End Module
