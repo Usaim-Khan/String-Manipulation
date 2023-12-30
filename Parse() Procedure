@@ -1,0 +1,51 @@
+A string represents a series of whole numbers, separated by commas.
+For example: "12,13,451,22"
+
+Assume that:
+• the comma character ',' is used as a separator
+• the string contains only the characters '0' to '9' and the comma character ','.
+
+A procedure Parse will:
+• take the string as a parameter
+• extract each number in turn
+• calculate the total value and average value of all the numbers
+• output the total and average values with a suitable message.
+
+Write pseudocode for the procedure
+-----------------------------------------------------------------
+*ANSWER*
+
+Module Program
+    Sub Parse(Instr)
+        Dim i, total, count As Integer
+        Dim ch As Char
+        Dim avg As Double
+        Dim temp As String
+        temp = ""
+        count = 0
+        total = 0
+
+        Instr = Instr + ","
+        For i = 1 To Len(Instr)
+            ch = Mid(Instr, i, 1)
+            If ch = "," Then
+                total = total + CInt(temp)
+                temp = ""
+                count += 1
+            Else
+                temp = temp + ch
+            End If
+        Next
+        avg = total / count
+        Console.WriteLine("Total :" & total)
+        Console.WriteLine("Avg :" & avg)
+    End Sub
+
+
+    Sub Main()
+        Parse("12,13,451,22")
+        Parse("56,3")
+        Parse("1,1,1,1")
+        Parse("223,67778,33,7,1,3,0,78,4,5")
+    End Sub
+End Module
