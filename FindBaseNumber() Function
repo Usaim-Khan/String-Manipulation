@@ -1,0 +1,45 @@
+The factorial of an integer number is the product of all the integers from that number down to 1.
+In general, the factorial of n is n *(n-1) *... * 2 * 1
+For example, the factorial of 5 is 5 * 4 * 3 * 2 * 1 = 120
+In this question, n will be referred to as the BaseNumber.
+
+A function FindBaseNumber() will:
+• be called with a positive, non-zero integer value as a parameter
+• return BaseNumber if the parameter value is the factorial of the BaseNumber
+• return -1 if parameter is not a factorial.
+ For example:
+Parameter value       Value returned
+    120                   5
+    12                    -1
+    6                     3
+    1                     1
+
+FindBaseNumber(12) will return -1 because 12 is not a factorial
+Write pseudocode for the function FindBaseNumber()
+------------------------------------------------------------------------------------------------
+Module Program
+    Function FindBaseNumber(num)
+        Dim product, i, value As Integer
+        product = 1
+        i = 0
+
+        Do
+            i += 1
+            product *= i
+        Loop Until product >= num
+        If product = num Then
+            value = i
+        Else
+            value = -1
+        End If
+        Return value
+    End Function
+    Sub Main()
+        Console.WriteLine(FindBaseNumber(120))
+        Console.WriteLine(FindBaseNumber(12))
+        Console.WriteLine(FindBaseNumber(6))
+        Console.WriteLine(FindBaseNumber(1))
+
+    End Sub
+End Module
+
