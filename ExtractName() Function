@@ -1,0 +1,33 @@
+A global 1D array, Contact, of type STRING is used to store a list of names and email addresses.
+There are 1000 elements in the array. Each element stores one data item. The format of each
+data item is as follows:
+ <Name>':'<EmailAddress>
+
+Name and EmailAddress are both variable-length strings. For example:
+"Wan Zhu:zwan99@mymail.com"
+
+A function, Extract(), is part of the program that processes the array. A string data item is
+passed to the function as a parameter. The function will return the Name part. Validation is not
+necessary
+
+Write program code for the function Extract()
+-------------------------------------------------------------------------------------------------
+*ANSWER*
+
+Module Program
+    Function ExtractName(str)
+        Dim i, index As Integer
+        For i = 1 To Len(str)
+            If Mid(str, i, 1) = ":" Then
+                index = i
+            End If
+        Next
+        Return Left(str, index - 1)
+    End Function
+    Sub Main()
+        Console.WriteLine(ExtractName("Usaim Khan:usaim111@gmail.com"))
+        Console.WriteLine(ExtractName("usaim:abc@def.com"))
+        Console.WriteLine(ExtractName("u:123"))
+        Console.WriteLine(ExtractName("hello world: hello@world.com"))
+    End Sub
+End Module
