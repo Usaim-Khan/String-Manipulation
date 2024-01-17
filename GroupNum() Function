@@ -1,0 +1,53 @@
+A program stores a contact list of telephone numbers. Each telephone number is stored as a string of six or
+more numeric characters.
+Before they are displayed, number strings are formatted to make them easier to read. This involves forming
+the characters into groups, separated by the space character.
+The maximum length of a number group is five characters.
+Different numbers may have different groupings. A template string is used to define the grouping. 
+
+For Example:
+String                 Template        Formatted String
+"01223553998"          "53"            "01223 553 998"
+
+For the first row, template "53" results in a formatted string comprising:
+• the first five characters in the first group
+• a space character
+• the next three characters in the second group
+• a space character
+• the remaining characters from the number string.
+
+
+(a) Write pseudocode for a function GroupNum(), which takes a telephone number and a template as
+parameter strings and returns a formatted string.
+You may assume that the template and telephone number are valid.
+
+---------------------------------------------------------------------------------------------------------
+
+Module Program
+    Function GroupNum(mystr, template)
+        Dim finalstr, old_str, group As String
+        Dim i, curr_len As Integer
+        finalstr = ""
+        old_str = mystr
+
+        For i = 1 To Len(template)
+            curr_len = Mid(template, i, 1)
+            group = Mid(old_str, 1, curr_len) & " "
+            finalstr += group
+            old_str = Mid(old_str, curr_len + 1, Len(old_str) - 1)
+        Next
+
+        If Len(old_str) <> 0 Then
+            finalstr += old_str
+        End If
+
+        Return finalstr
+    End Function
+
+
+    Sub Main()
+        Console.WriteLine(GroupNum("03112593164", "4322"))
+        Console.WriteLine(GroupNum("4044496128", "33"))
+        Console.WriteLine(GroupNum("509700101", "222"))
+    End Sub
+End Module
