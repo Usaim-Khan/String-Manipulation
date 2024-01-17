@@ -1,0 +1,60 @@
+A simple arithmetic expression is stored as a string in the format:
+ <Value1><Operator><Value2>
+Operator can be (+ - * /)
+
+Example arithmetic expression strings:
+"803+1904"
+"34/7"
+
+(a) A procedure Calculate() will:
+• take an arithmetic expression string as a parameter
+• evaluate the expression
+• output the result.
+ Assume:
+• the string contains only numeric digits and a single operator character
+• Value1 and Value2 represent integer values
+
+ (i) Write pseudocode for the procedure Calculate()
+
+
+-----------------------------------------------------------------------------
+Module Program
+
+    Sub calculate(expression)
+        Dim num1, num2, signpos, i As Integer
+        Dim result As Double
+        Dim sign, ch As Char
+
+        ' finding position of operator 
+        For i = 1 To Len(expression)
+            ch = Mid(expression, i, 1)
+            If ch < "0" Or ch > "9" Then
+                signpos = i
+            End If
+        Next
+
+        num1 = CInt(Left(expression, signpos - 1)) 'num before operator
+        num2 = CInt(Right(expression, Len(expression) - signpos)) 'num after operator
+        sign = Mid(expression, signpos, 1)
+
+        Select Case sign
+            Case "+"
+                result = num1 + num2
+            Case "-"
+                result = num1 - num2
+            Case "*"
+                result = num1 * num2
+            Case "/"
+                result = num1 / num2
+        End Select
+        Console.WriteLine(result)
+    End Sub
+    Sub Main()
+        calculate("1+1")
+        calculate("803+1094")
+        calculate("50*3")
+        calculate("9/3")
+        calculate("5*5")
+        calculate("100-31")
+    End Sub
+End Module
