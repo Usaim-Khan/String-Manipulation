@@ -1,0 +1,97 @@
+9618/22/MJ/21
+
+Module Program
+    Dim FNString As String
+    Dim IgnoreList(0 To 9) As String
+
+    Function Getstart(WordNum As Integer) As Integer
+        Dim spacecount, i, startIndex As Integer
+        Dim done As Boolean
+        startIndex = -1
+        spacecount = 0
+
+        If WordNum = 1 Then
+            startIndex = 1
+        Else
+            For i = 1 To Len(FNString)
+
+                If Mid(FNString, i, 1) = " " Then
+                    spacecount += 1
+
+                End If
+
+                If spacecount = WordNum - 1 And done = False Then
+                    startIndex = i + 1
+                    done = True
+                End If
+
+            Next
+        End If
+
+        Return startIndex
+    End Function
+
+    Function GetWord(StartPos As Integer) As String
+        Dim i As Integer
+        Dim add As Boolean
+        Dim finalStr As String
+        add = True
+        finalStr = ""
+
+        For i = StartPos To Len(FNString)
+
+            If Mid(FNString, i, 1) = " " Then
+                add = False
+            End If
+
+            If add = True Then
+                finalStr += Mid(FNString, i, 1)
+            End If
+        Next
+
+        Return finalStr
+    End Function
+
+    Function IgnoreWord(word As String) As Boolean
+        Dim i As Integer
+
+        For i = 0 To 9
+            If UCase(IgnoreList(i)) = UCase(word) Then
+                Return True
+            End If
+        Next
+        Return False
+
+    End Function
+
+    Sub GetInitials()
+        Dim i, startIndex As Integer
+        Dim Initials, word As String
+        i = 1
+        Initials = ""
+
+        While Getstart(i) <> -1
+            startIndex = Getstart(i)
+            word = GetWord(startIndex)
+
+            If IgnoreWord(word) = False Then
+                Initials += Left(word, 1)
+            End If
+
+            i = i + 1
+        End While
+
+        Console.WriteLine(Initials)
+
+    End Sub
+
+    Sub Main()
+        FNString = "The American Standard Code for Information Interchange"
+        IgnoreList = {"the", "and", "of", "for", "to", "", "", "", "", ""}
+
+        GetInitials()
+
+        FNString = "Integerated Development Environment"
+        GetInitials()
+    End Sub
+End Module
